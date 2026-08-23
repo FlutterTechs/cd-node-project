@@ -1,0 +1,45 @@
+name: Deploy Node.js App to EC2
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to EC2 via SSH
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            # Navigate to the project directory (create it if it doesn't exist yet)
+            mkdir -p ~/project1
+            cd ~/project1
+
+            # If it's not a git repository, clone/initialize it. Otherwise, pull latest.
+            if [ ! -d ".git" ]; then
+              git clone https://github.com/${{ github.repository }}.git .
+            else
+              git pull origin main || git pull origin master
+            fi
+
+            # Install dependencies
+            npm install --production
+
+            # Ensure PM2 is installed globally for process management
+            if ! command -v pm2 &> /dev/null; then
+              echo "Installing pm2 globally..."
+              npm install -g pm2
+            fi
+
+            # Restart the server using PM2 (or start it if not running)
+            pm2 reload server.js || pm2 start server.js --name "task-planner-app"
+            
+            # Save the pm2 state so it restarts on system reboot
+            pm2 save
