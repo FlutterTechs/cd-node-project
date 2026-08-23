@@ -39,13 +39,13 @@ app.get('/', (req, res) => {
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-color: #0b0f19;
-      --card-bg: rgba(22, 28, 45, 0.6);
-      --border-color: rgba(255, 255, 255, 0.08);
-      --text-main: #f3f4f6;
-      --text-muted: #9ca3af;
-      --primary: #6366f1;
-      --primary-hover: #4f46e5;
+      --bg-color: #040806;
+      --card-bg: rgba(10, 20, 16, 0.65);
+      --border-color: rgba(16, 185, 129, 0.12);
+      --text-main: #f0fdf4;
+      --text-muted: #86efac;
+      --primary: #10b981;
+      --primary-hover: #059669;
       --danger: #ef4444;
       --danger-hover: #dc2626;
     }
@@ -59,7 +59,7 @@ app.get('/', (req, res) => {
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
       background-color: var(--bg-color);
-      background-image: radial-gradient(circle at 50% 0%, #151c30 0%, #0b0f19 100%);
+      background-image: radial-gradient(circle at 50% 0%, #062c22 0%, #040806 100%);
       color: var(--text-main);
       min-height: 100vh;
       display: flex;
@@ -73,10 +73,10 @@ app.get('/', (req, res) => {
       max-width: 480px;
       background: var(--card-bg);
       border: 1px solid var(--border-color);
-      backdrop-filter: blur(12px);
+      backdrop-filter: blur(16px);
       border-radius: 1.25rem;
       padding: 2rem;
-      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6), 0 0 50px rgba(16, 185, 129, 0.03);
     }
 
     header {
@@ -88,7 +88,7 @@ app.get('/', (req, res) => {
       font-size: 1.5rem;
       font-weight: 700;
       letter-spacing: -0.025em;
-      background: linear-gradient(to right, #ffffff, #a5b4fc);
+      background: linear-gradient(to right, #ffffff, #a7f3d0);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       margin-bottom: 0.25rem;
@@ -96,7 +96,8 @@ app.get('/', (req, res) => {
 
     .subtitle {
       font-size: 0.85rem;
-      color: var(--text-muted);
+      color: #6ee7b7;
+      opacity: 0.85;
     }
 
     .input-group {
@@ -107,7 +108,7 @@ app.get('/', (req, res) => {
 
     input[type="text"] {
       flex: 1;
-      background: rgba(0, 0, 0, 0.3);
+      background: rgba(0, 0, 0, 0.4);
       border: 1px solid var(--border-color);
       border-radius: 0.75rem;
       padding: 0.75rem 1rem;
@@ -120,7 +121,7 @@ app.get('/', (req, res) => {
     input[type="text"]:focus {
       outline: none;
       border-color: var(--primary);
-      box-shadow: 0 0 10px rgba(99, 102, 241, 0.2);
+      box-shadow: 0 0 12px rgba(16, 185, 129, 0.25);
     }
 
     .btn {
@@ -157,7 +158,7 @@ app.get('/', (req, res) => {
       justify-content: space-between;
       align-items: center;
       padding: 0.875rem 1rem;
-      background: rgba(255, 255, 255, 0.03);
+      background: rgba(16, 185, 129, 0.03);
       border: 1px solid var(--border-color);
       border-radius: 0.75rem;
       transition: all 0.2s ease;
@@ -165,8 +166,8 @@ app.get('/', (req, res) => {
     }
 
     .task-item:hover {
-      background: rgba(255, 255, 255, 0.05);
-      border-color: rgba(255, 255, 255, 0.15);
+      background: rgba(16, 185, 129, 0.06);
+      border-color: rgba(16, 185, 129, 0.25);
     }
 
     .task-title {
