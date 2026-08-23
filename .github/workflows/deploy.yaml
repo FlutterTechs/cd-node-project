@@ -19,8 +19,8 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             # Navigate to the project directory (create it if it doesn't exist yet)
-            mkdir -p ~/project1
-            cd ~/project1
+            mkdir -p ~/cd-node-project
+            cd ~/cd-node-project
 
             # If it's not a git repository, clone/initialize it. Otherwise, pull latest.
             if [ ! -d ".git" ]; then
