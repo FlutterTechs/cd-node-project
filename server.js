@@ -1,6 +1,20 @@
 const express = require('express');
+const os = require('os');
 const app = express();
 const PORT = process.env.PORT || 3000;
+const HOST = process.env.HOST || '0.0.0.0';
+
+function getNetworkAddress() {
+  const interfaces = os.networkInterfaces();
+  for (const name of Object.keys(interfaces)) {
+    for (const iface of interfaces[name]) {
+      if (iface.family === 'IPv4' && !iface.internal) {
+        return iface.address;
+      }
+    }
+  }
+  return null;
+}
 
 app.use(express.json());
 
@@ -333,6 +347,14 @@ app.delete('/api/tasks/:id', (req, res) => {
   res.json({ success: true });
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
+app.listen(PORT, HOST, () => {
+  const localAddress = HOST === '0.0.0.0' ? 'localhost' : HOST;
+  const networkAddress = getNetworkAddress();
+  console.log(`=========================================`);
+  console.log(`  Server running at:`);
+  console.log(`  - Local:   http://${localAddress}:${PORT}`);
+  if (networkAddress) {
+    console.log(`  - Network: http://${networkAddress}:${PORT}`);
+  }
+  console.log(`=========================================`);
 });
