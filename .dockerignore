@@ -1,0 +1,12 @@
+node_modules
+npm-debug.log
+.git
+.gitignore
+.github
+.dockerignore
+Dockerfile
+docker-compose.yml
+terraform
+README.md
+*.md
+.DS_Store
