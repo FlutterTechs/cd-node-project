@@ -39,15 +39,15 @@ app.get('/', (req, res) => {
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-color: #08040a;
-      --card-bg: rgba(20, 10, 28, 0.65);
-      --border-color: rgba(139, 92, 246, 0.12);
-      --text-main: #f5f3ff;
-      --text-muted: #c4b5fd;
-      --primary: #8b5cf6;
-      --primary-hover: #7c3aed;
-      --danger: #ef4444;
-      --danger-hover: #dc2626;
+      --bg-color: #0a0404;
+      --card-bg: rgba(28, 10, 10, 0.65);
+      --border-color: rgba(239, 68, 68, 0.12);
+      --text-main: #fef2f2;
+      --text-muted: #fca5a5;
+      --primary: #ef4444;
+      --primary-hover: #dc2626;
+      --danger: #f97316;
+      --danger-hover: #ea580c;
     }
 
     * {
@@ -59,7 +59,7 @@ app.get('/', (req, res) => {
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
       background-color: var(--bg-color);
-      background-image: radial-gradient(circle at 50% 0%, #2e1065 0%, var(--bg-color) 100%);
+      background-image: radial-gradient(circle at 50% 0%, #7f1d1d 0%, var(--bg-color) 100%);
       color: var(--text-main);
       min-height: 100vh;
       display: flex;
@@ -76,7 +76,7 @@ app.get('/', (req, res) => {
       backdrop-filter: blur(16px);
       border-radius: 1.25rem;
       padding: 2rem;
-      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6), 0 0 50px rgba(139, 92, 246, 0.03);
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6), 0 0 50px rgba(239, 68, 68, 0.03);
     }
 
     header {
@@ -88,7 +88,7 @@ app.get('/', (req, res) => {
       font-size: 1.5rem;
       font-weight: 700;
       letter-spacing: -0.025em;
-      background: linear-gradient(to right, #ffffff, #ddd6fe);
+      background: linear-gradient(to right, #ffffff, #fecaca);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       margin-bottom: 0.25rem;
@@ -96,7 +96,7 @@ app.get('/', (req, res) => {
 
     .subtitle {
       font-size: 0.85rem;
-      color: #a78bfa;
+      color: #fca5a5;
       opacity: 0.85;
     }
 
@@ -121,7 +121,7 @@ app.get('/', (req, res) => {
     input[type="text"]:focus {
       outline: none;
       border-color: var(--primary);
-      box-shadow: 0 0 12px rgba(139, 92, 246, 0.25);
+      box-shadow: 0 0 12px rgba(239, 68, 68, 0.25);
     }
 
     .btn {
@@ -158,7 +158,7 @@ app.get('/', (req, res) => {
       justify-content: space-between;
       align-items: center;
       padding: 0.875rem 1rem;
-      background: rgba(139, 92, 246, 0.03);
+      background: rgba(239, 68, 68, 0.03);
       border: 1px solid var(--border-color);
       border-radius: 0.75rem;
       transition: all 0.2s ease;
@@ -166,8 +166,8 @@ app.get('/', (req, res) => {
     }
 
     .task-item:hover {
-      background: rgba(139, 92, 246, 0.06);
-      border-color: rgba(139, 92, 246, 0.25);
+      background: rgba(239, 68, 68, 0.06);
+      border-color: rgba(239, 68, 68, 0.25);
     }
 
     .task-title {
@@ -194,7 +194,7 @@ app.get('/', (req, res) => {
 
     .delete-btn:hover {
       color: var(--danger);
-      background: rgba(239, 68, 68, 0.15);
+      background: rgba(249, 115, 22, 0.15);
     }
 
     .empty-state {
