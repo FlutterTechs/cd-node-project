@@ -9,6 +9,8 @@ on:
 permissions:
   contents: read
   packages: write
+  id-token: write
+
 
 env:
   IMAGE_NAME: ghcr.io/${{ github.repository }}
@@ -39,19 +41,12 @@ jobs:
             ${{ env.IMAGE_NAME }}:latest
             ${{ env.IMAGE_NAME }}:${{ github.sha }}
 
-      - name: Deploy to EC2 via SSH
-        uses: appleboy/ssh-action@v1.0.3
-        env:
-          GHCR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GHCR_ACTOR: ${{ github.actor }}
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
         with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ubuntu
-          key: ${{ secrets.EC2_SSH_KEY }}
-          envs: GHCR_TOKEN,GHCR_ACTOR
-          script: |
-            echo "$GHCR_TOKEN" | docker login ghcr.io -u "$GHCR_ACTOR" --password-stdin
-            cd ~/app
-            docker compose pull
-            docker compose up -d
-            docker image prune -f
+          role-to-assume: ${{ secrets.AWS_IAM_ROLE }}
+          aws-region: us-east-1 # TODO: Update with your AWS region if different
+
+      # TODO: Add your custom deployment step here using the configured AWS credentials
+      # - name: Deploy
+      #   run: aws ssm send-command ...
