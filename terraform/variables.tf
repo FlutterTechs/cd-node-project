@@ -27,3 +27,12 @@ variable "ssh_allowed_cidr" {
   type        = string
   default     = "0.0.0.0/0"
 }
+
+variable "github_oidc_subjects" {
+  description = "Allowed values of the GitHub Actions OIDC token's `sub` claim that may assume the deploy role. This repo's default subject format embeds immutable owner/repo IDs (repo:OWNER@OWNER_ID/REPO@REPO_ID:ref:REF) rather than plain names - verify via `gh api repos/<owner>/<repo>/actions/oidc/customization/sub` if this repo is ever renamed or transferred."
+  type        = list(string)
+  default = [
+    "repo:FlutterTechs@168553497/cd-node-project@1343745796:ref:refs/heads/main",
+    "repo:FlutterTechs@168553497/cd-node-project@1343745796:ref:refs/heads/master",
+  ]
+}
