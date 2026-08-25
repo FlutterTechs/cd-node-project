@@ -52,7 +52,7 @@ jobs:
           COMMAND_ID=$(aws ssm send-command \
             --document-name "AWS-RunShellScript" \
             --targets "Key=tag:Name,Values=cd-node-project" \
-            --parameters 'commands=["echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin", "cd ~/app", "docker compose pull", "docker compose up -d", "docker image prune -f"]' \
+            --parameters 'commands=["set -e", "echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin", "cd /home/ubuntu/app", "docker compose pull", "docker compose up -d", "docker image prune -f"]' \
             --comment "Deploy latest Docker container" \
             --timeout-seconds 60 \
             --max-concurrency "50" \
