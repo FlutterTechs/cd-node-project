@@ -47,6 +47,14 @@ jobs:
           role-to-assume: ${{ secrets.AWS_IAM_ROLE }}
           aws-region: us-east-1 # TODO: Update with your AWS region if different
 
-      # TODO: Add your custom deployment step here using the configured AWS credentials
-      # - name: Deploy
-      #   run: aws ssm send-command ...
+      - name: Deploy to EC2 via AWS SSM
+        run: |
+          aws ssm send-command \
+            --document-name "AWS-RunShellScript" \
+            --targets "Key=tag:Name,Values=cd-node-project" \
+            --parameters 'commands=["echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin", "cd ~/app", "docker compose pull", "docker compose up -d", "docker image prune -f"]' \
+            --comment "Deploy latest Docker container" \
+            --timeout-seconds 60 \
+            --max-concurrency "50" \
+            --max-errors "0"
+

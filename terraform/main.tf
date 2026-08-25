@@ -47,6 +47,7 @@ resource "aws_security_group" "app" {
 resource "aws_instance" "app" {
   ami                    = data.aws_ami.ubuntu.id
   instance_type          = var.instance_type
+  iam_instance_profile   = aws_iam_instance_profile.ec2_ssm.name
 
   vpc_security_group_ids = [aws_security_group.app.id]
 
